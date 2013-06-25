@@ -1,0 +1,337 @@
+# This is a sample Vroom input file. It should help you get started.
+#
+# Edit this file with your content. Then run `vroom vroom` to start
+# the show!
+#
+# See `perldoc Vroom` for complete details.
+#
+---- config
+# Basic config options.
+title: JavaScript on Vim
+indent: 5
+auto_size: 1
+height: 22
+width: 80
+vim_opts: '-u NONE'
+skip: 0
+
+# The following options are for Gvim usage.
+# vim: gvim
+# gvimrc: |
+#   set fuopt=maxhorz,maxvert
+#   set guioptions=egmLtT
+#   set guifont=Bitstream_Vera_Sans_Mono:h18
+#   set guicursor=a:blinkon0-ver25-Cursor
+#   colorscheme default
+
+vimrc: |
+  set nowrap
+
+---- center
+
+JavaScript on Vim
+
+by othree
+
+----
+== me
+
+* othree
++* on Github, Flickr, Twitter
+
++* F2E at HTC
++* Maintains some Vim plugin
+
+----
+== Agenda
+
+* What plugin I maintained
++* What I used as a F2E
++* The eco system of Vim community
++* Problems I face while maintain these projects
++* How to get familiar with Vim script
++* Write a plugin?
+
+---- viml,i4
+
+----
+== My Vim Repos
+ 
+* https://github.com/search?q=%40othree&type=Repositories&l=VimL
+
++* html5.vim
+* xml.vim
+
++* javascript-syntax.vim
++* javascript-libraries-syntax.vim
+
++* jslint.vim
+* coffee-check.vim
+
++* eregex.vim
++* vim-autocomplpop
+
+----
+== Other Plugins
+
++* jscomplete.vim
++* vim-snipmate
++* Syntastic
+
+----
+== html5.vim
+
+* 290 stars
+* Build this for personal need
+* But no more need when I complete it
+
+---- center
+Syntax
+
+----
+== Syntax File for JavaScript
+
+* Have built in version
+* Vim 7.3 introduce SyntaxComplete
+* Not work with javascript... Why?
+
+----
+== Look Into SyntaxComplete
+
+---- viml,i4
+
+while ftindex > -1
+    let ft_part_name = matchstr( &filetype, '\w\+', ftindex )
+
+    " Syntax rules can contain items for more than just the current
+    " filetype.  They can contain additional items added by the user
+    " via autocmds or their vimrc.
+    " Some syntax files can be combined (html, php, jsp).
+    " We want only items that begin with the filetype we are interested in.
+    let next_group_regex = '\n' .
+                \ '\zs'.ft_part_name.'\w\+\ze'.
+                \ '\s\+xxx\s\+'
+    let index    = 0
+    let index    = match(syntax_full, next_group_regex, index)
+
+    if index == -1 && exists('b:current_syntax') && ft_part_name != b:current_syntax
+        " There appears to be two standards when writing syntax files.
+        " Either items begin as:
+        "     syn keyword {filetype}Keyword         values ...
+        "     let b:current_syntax = "sql"
+        "     let b:current_syntax = "sqlanywhere"
+        " Or
+        "     syn keyword {syntax_filename}Keyword  values ...
+        "     let b:current_syntax = "mysql"
+        " So, we will make the format of finding the syntax group names
+        " a bit more flexible and look for both if the first fails to
+        " find a match.
+        let next_group_regex = '\n' .
+                    \ '\zs'.b:current_syntax.'\w\+\ze'.
+                    \ '\s\+xxx\s\+'
+        let index    = 0
+        let index    = match(syntax_full, next_group_regex, index)
+    endif
+
+----
+== How About JavaScript Syntax
+
+---- viml,i4
+
+if version >= 508 || !exists("did_javascript_syn_inits")
+  if version < 508
+    let did_javascript_syn_inits = 1
+    command -nargs=+ HiLink hi link <args>
+  else
+    command -nargs=+ HiLink hi def link <args>
+  endif
+  HiLink javaScriptComment              Comment
+  HiLink javaScriptLineComment          Comment
+  HiLink javaScriptCommentTodo          Todo
+  HiLink javaScriptSpecial              Special
+  HiLink javaScriptStringS              String
+  HiLink javaScriptStringD              String
+  HiLink javaScriptCharacter            Character
+  HiLink javaScriptSpecialCharacter     javaScriptSpecial
+  HiLink javaScriptNumber               javaScriptValue
+  HiLink javaScriptConditional          Conditional
+  HiLink javaScriptRepeat               Repeat
+  HiLink javaScriptBranch               Conditional
+  HiLink javaScriptOperator             Operator
+  HiLink javaScriptType                 Type
+  HiLink javaScriptStatement            Statement
+  HiLink javaScriptFunction             Function
+  HiLink javaScriptBraces               Function
+  HiLink javaScriptError                Error
+  HiLink javaScrParenError              javaScriptError
+  HiLink javaScriptNull                 Keyword
+  HiLink javaScriptBoolean              Boolean
+  HiLink javaScriptRegexpString         String
+
+---- center
+
+'javaScript' vs 'javascript'
+
+---- javascript
+
+// Are they the same?
+print('javascript' === 'javaScript');
+
+---- i-4
+== *44.12*  Portable syntax file layout
+
+* :help 44.12
+
+Choose a good, descriptive name for your syntax file.  Use lowercase letters
+and digits.  Don't make it too long, it is used in many places: The name of
+the syntax file "name.vim", 'filetype', b:current_syntax and the start of each
+syntax group (nameType, nameStatement, nameString, etc).
+
+---- center
+
+ㄜ....
+
+---- 
+== 上樑不正下梁歪
+
++* Almost all other JavaScript syntax use *javaScript*
++* LiveScript syntax use *liveScript*
+
+---- 
+== More Worse
+
++* I'm writing javascript-libraries-syntax.vim
++* And I hope this keywords can be used in complete function
++* I can't use library name as group name
+
+----
+== To Solve This
+
++* Contact to author of SyntaxComplete
++* Contact to author of LiveScript syntax file
++* Contact to vimdev
++* Walk around for my libraries syntax
+
+----
+== Response
+
++* SyntaxComplete author David Fishburn build a new version (13)
++* User can assign custom rule for syntax group name
+
++* No response from vimdev...
++* So I start host my *javascript-syntax.vim*
+
++* How about the walk around?
+
+---- sh,i4
+
+> ls javascript-libraries-syntax.vim/autoload/syntax/*
++
+angularjs.coffee.vim
+angularjs.javascript.vim
+angularjs.ls.vim
+angularjs.typescript.vim
+jquery.coffee.vim
+jquery.javascript.vim
+jquery.ls.vim
+jquery.typescript.vim
+postprocess.coffee.vim
+postprocess.javascript.vim
+postprocess.ls.vim
+postprocess.typescript.vim
+prelude.coffee.vim
+prelude.javascript.vim
+prelude.ls.vim
+prelude.typescript.vim
+update.sh
+
+---- center
+
+Complete
+
+----
+== OmniComplete
+
+* Need a little configure
+
+---- viml,i4
+
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+
+----
+
+* Then press <C-X><C-O>
+
+----
+
+* I have trouble to press <C-X><C-O>
+
++* Alternative, you can use:
++  * SuperTab
++  * AutoComplPop
+
+----
+== AutoComplPop
+
+* Automatically trigger <C-X><C-O>
++* Author not maintains anymore
++* Don't have default setting for JavaScript
+
+---- viml,i4
+
+let behavs = { 'javascript': [], 'html': [] }
+    call add(behavs.javascript, {
+        \   'command'      : "\<C-x>\<C-u>",
+        \   'completefunc' : 'acp#completeSnipmate',
+        \   'meets'        : 'acp#meetsForSnipmate',
+        \   'onPopupClose' : 'acp#onPopupCloseSnipmate',
+        \   'repeat'       : 0,
+    \})
+    call add(behavs.javascript, {
+        \   'command' : g:acp_behaviorKeywordCommand,
+        \   'meets'   : 'acp#meetsForKeyword',
+        \   'repeat'  : 0,
+        \ })
+    call add(behavs.javascript, {
+        \   'command' : "\<C-x>\<C-o>",
+        \   'meets'   : 'AcpMeetsForJavaScript',
+        \   'repeat'  : 0,
+    \})
+
+let g:acp_behavior = {}
+call extend(g:acp_behavior, behavs, 'keep')
+
+---- center
+
+ㄜ....
+
+---- center
+
+Maintain my own AutoComplPop
+
+----
+== My AutoComplPop
+
++* Add more filetype default support
++* Supports snipmate again
+
+----
+== What happened with snipmate
+
+*
+
+---- javascript,i4
+// This is some Perl code.
+// Notice the syntax highlighting.
+// Run it with the <RR> vim command.
+print('word');
+
+----
+== Questions?
+----
+== Slide Source
+
+* https://github.com/othree/javascript-on-vim-slide/
+
+----
+== The End
