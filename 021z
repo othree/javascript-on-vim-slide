@@ -4,15 +4,15 @@
 
 
 
-                                    Response
 
-     * SyntaxComplete author David Fishburn build a new version (13)
-     * User can assign custom rule for syntax group name
+                                   More Worse
 
-     * No response from vimdev...
-     * So I start host my *javascript-syntax.vim*
 
-     * How about the walk around?
+     * I'm writing javascript-libraries-syntax.vim
+
+     * And I hope these keywords can be used in complete function
+
+     * I can't use library name as group name
 
 
 

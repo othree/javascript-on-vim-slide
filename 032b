@@ -5,11 +5,12 @@
 
 
 
+                                  AutoComplPop
 
 
-                                My AutoComplPop
+     * Automatically trigger <C-X><C-O>
 
-     * Add more filetype default support
+     * Author not maintains anymore
 
 
 

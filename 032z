@@ -5,14 +5,14 @@
 
 
 
+                                  AutoComplPop
 
 
-                                My AutoComplPop
+     * Automatically trigger <C-X><C-O>
 
-     * Add more filetype default support
-     * Supports snipmate again
+     * Author not maintains anymore
 
-
+     * Don't have default setting for JavaScript
 
 
 

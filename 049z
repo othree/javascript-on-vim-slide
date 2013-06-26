@@ -1,0 +1,24 @@
+
+
+
+
+                                   Syntastic
+
+
+     * General syntax checker interface
+
+     * filetype vs multiple checker
+
+     * Supports JavaScript, CoffeeScript...etc
+
+     * CoffeeScript supports CoffeeScript Compiler and CoffeeLint
+
+     * ... by default
+
+     * https://blog.othree.net/log/2013/06/21/syntastic-coffeelint/
+
+
+
+
+
+

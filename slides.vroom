@@ -15,17 +15,24 @@ width: 80
 vim_opts: '-u NONE'
 skip: 0
 
-# The following options are for Gvim usage.
-# vim: gvim
-# gvimrc: |
-#   set fuopt=maxhorz,maxvert
-#   set guioptions=egmLtT
-#   set guifont=Bitstream_Vera_Sans_Mono:h18
-#   set guicursor=a:blinkon0-ver25-Cursor
-#   colorscheme default
-
 vimrc: |
   set nowrap
+  hi def link slideLink VisualNOS
+  hi def link slideStar Label
+  hi def link slideTitle Title
+  hi def link slideVimPlugin Identifier
+  hi def link slideVimTag SpecialKey
+  hi def link slideVimCommand SpecialKey
+  hi def link slideCommand SpecialKey
+  autocmd BufRead \d\+\l\= syntax match slideLink   "http[^ ]\+"
+  autocmd BufRead \d\+\l\= syntax match slideStar   "^\s*\zs\*"
+  autocmd BufRead \d\+\l\= syntax match slideTitle  " \{15,}\zs.*"
+  autocmd BufRead \d\+\l\= syntax match slideVimPlugin   "\<[A-Za-z-0-9]\+\.vim\>"
+  autocmd BufRead \d\+\l\= syntax match slideVimPlugin   "\<vim-[a-z-0-9]\+\>"
+  autocmd BufRead \d\+\l\= syntax match slideVimTag      "<.*>"
+  autocmd BufRead \d\+\l\= syntax match slideVimCommand  " :[a-z-]\+\>"
+  autocmd BufRead \d\+\l\= syntax match slideCommand  "`.*`"
+
 
 ---- center
 
@@ -34,33 +41,46 @@ JavaScript on Vim
 by othree
 
 ----
+== Slide Source
+
+
+* https://github.com/othree/javascript-on-vim-slide/
+
+----
 == me
 
+
 * othree
+
 +* on Github, Flickr, Twitter
 
 +* F2E at HTC
+
 +* Maintains some Vim plugin
 
 ----
 == Agenda
 
-* What plugin I maintained
-+* What I used as a F2E
+
++* What plugin I use as a F2E
+
++* Big problem about JavaScript syntax
+
 +* The eco system of Vim community
+
 +* Problems I face while maintain these projects
-+* How to get familiar with Vim script
-+* Write a plugin?
+
++* How to get familiar with Vim Document
 
 ---- viml,i4
 
 ----
 == My Vim Repos
  
+
 * https://github.com/search?q=%40othree&type=Repositories&l=VimL
 
 +* html5.vim
-* xml.vim
 
 +* javascript-syntax.vim
 +* javascript-libraries-syntax.vim
@@ -74,6 +94,7 @@ by othree
 ----
 == Other Plugins
 
+
 +* jscomplete.vim
 +* vim-snipmate
 +* Syntastic
@@ -81,9 +102,14 @@ by othree
 ----
 == html5.vim
 
+
 * 290 stars
+
 * Build this for personal need
+
 * But no more need when I complete it
+
+----
 
 ---- center
 Syntax
@@ -91,12 +117,16 @@ Syntax
 ----
 == Syntax File for JavaScript
 
+
 * Have built in version
+
 * Vim 7.3 introduce SyntaxComplete
+
 * Not work with javascript... Why?
 
-----
-== Look Into SyntaxComplete
+---- center
+  
+Look Into SyntaxComplete
 
 ---- viml,i4
 
@@ -133,8 +163,9 @@ while ftindex > -1
         let index    = match(syntax_full, next_group_regex, index)
     endif
 
-----
-== How About JavaScript Syntax
+---- center
+
+How About JavaScript Syntax
 
 ---- viml,i4
 
@@ -180,6 +211,7 @@ print('javascript' === 'javaScript');
 ---- i-4
 == *44.12*  Portable syntax file layout
 
+
 * :help 44.12
 
 Choose a good, descriptive name for your syntax file.  Use lowercase letters
@@ -194,32 +226,46 @@ syntax group (nameType, nameStatement, nameString, etc).
 ---- 
 == 上樑不正下梁歪
 
+
 +* Almost all other JavaScript syntax use *javaScript*
+
 +* LiveScript syntax use *liveScript*
 
 ---- 
 == More Worse
 
+
 +* I'm writing javascript-libraries-syntax.vim
-+* And I hope this keywords can be used in complete function
+
++* And I hope these keywords can be used in complete function
+
 +* I can't use library name as group name
 
 ----
 == To Solve This
 
+
 +* Contact to author of SyntaxComplete
+
 +* Contact to author of LiveScript syntax file
+
 +* Contact to vimdev
+
 +* Walk around for my libraries syntax
 
 ----
 == Response
 
+
 +* SyntaxComplete author David Fishburn build a new version (13)
+
 +* User can assign custom rule for syntax group name
 
+
 +* No response from vimdev...
+
 +* So I start host my *javascript-syntax.vim*
+
 
 +* How about the walk around?
 
@@ -245,6 +291,8 @@ prelude.ls.vim
 prelude.typescript.vim
 update.sh
 
+----
+
 ---- center
 
 Complete
@@ -263,6 +311,14 @@ autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 * Then press <C-X><C-O>
 
 ----
+== Default JS Complete
+
+
++* Out of date
+
++* I use *jscomplete.vim*
+
+----
 
 * I have trouble to press <C-X><C-O>
 
@@ -273,8 +329,11 @@ autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 ----
 == AutoComplPop
 
+
 * Automatically trigger <C-X><C-O>
+
 +* Author not maintains anymore
+
 +* Don't have default setting for JavaScript
 
 ---- viml,i4
@@ -312,26 +371,365 @@ Maintain my own AutoComplPop
 ----
 == My AutoComplPop
 
+
 +* Add more filetype default support
+
 +* Supports snipmate again
 
 ----
 == What happened with snipmate
 
-*
 
----- javascript,i4
-// This is some Perl code.
-// Notice the syntax highlighting.
-// Run it with the <RR> vim command.
-print('word');
++* Author don't maintains....
+
+
+----
+== But
+
+
++* A new fork on Github by Rok Garbas, Marc Weber, and Adnan Zafar
+
++* Breaks old way to work with AutoComplPop
+
++* So I fixed it
+
+
++* https://blog.othree.net/log/2013/06/25/autocomplpop-and-snipmate/
+
+----
+== The Old Vim EcoSystem
+
+
++* Vim Scripts
+
++* Move file by hand
+
++* Vimball file
+
+----
+== The Vim EcoSystem Changes
+
+
++* pathogen by Tim Pope
+
++* Depends on Git, HG ...etc
+
++* I use Vundle, it depends on Github
+
++* More and more Vim plugin only exists on Github or other repo sites
++  * ex: garbas/vim-snipmates
++        othree/vim-autocomplpop    
+
+----
+== The pathogen Way
+
+
++* Separate all plugins
+
++* No more mass in .vim folder
+
++* Uninstall plugins never hard
+
++* Update all plugins automatically
+
+---- center
+
+Thanks You, Tim Pope !!
+
+----
+== Last Slide for Complete
+
+
+* Imaging the complete funcion in IDE
+
++* Tern: http://ternjs.net/
+
+
++* But I am writing CoffeeScript now.....
+
++* Tell us if you have experience on Tern
+
+---- center
+
+lint
+
+
+----
+== JSLint
+
+
+* JSLint.vim
+
++* Not update JSLint often
+
++* Host my own to fix this issue
+
++* Also try use JSHint
+
++* Then I starts write CoffeeScript...
+
+----
+== CoffeeCheck.vim
+
+
++* Based on JSLint.vim
+
++* Use CoffeeScript compiler to do syntax check 
+
++* Only one error per time
+
++* Only syntax check, not lint
+
++* CoffeeLint borns....
+
+----
+== CoffeeLin.vim ?
+
+
++* .....
+
++* Let me introduce ....
+
+---- center
+
+Syntastic
+
+----
+== Syntastic
+
+
++* General syntax checker interface
+
++* filetype vs multiple checker
+
++* Supports JavaScript, CoffeeScript...etc
+
++* CoffeeScript supports CoffeeScript Compiler and CoffeeLint
+
++* ... by default
+
++* https://blog.othree.net/log/2013/06/21/syntastic-coffeelint/
+
+----
+
+---- center
+
+The Vim Document
+
+----
+
+* Let's start from find command `/`
+
++* It supports regular expression
+
++* Vim's Regular Expression
+
+----
+== Vim's Regular Expression
+
+
++* http://vimdoc.sourceforge.net/htmldoc/pattern.html
+
+
++* Very different from other RegExp
+
++* Very different from JavaScript's RegExp
+
+----
+== For Example
+
+
++* Do you know `\zs` ?
+
++* Do you know `\w` still works ?
+
++* Do you know `[\w]` is not what you think ?
+
+
++* What if I want a familiar RegExp format, like Perl or JavaScript
++  * Ack.vim
++  * eregex.vim
+
+----
+== eregex.vim
+
+
+* Translate Perl style RegExp to Vim's format
+
+
++* Author: 安久津
+
++* Disappeared...
+
++* I start to host my own...
+
+----
+== Bugs
+
+
++* Do you know is is ok to find third item by `3/`
+
++* Do you know when count > 1, highlight will enable
+
++* Do you know there is a backword search `?`
+
+
++* eregex.vim can't do every thing above...
+
+----
+== The Count Parameter
+
+
+* :help command-count
+
+---- vim
+
+Range handling                          E177 E178 :command-range
+                                                        :command-count
+By default, user-defined commands do not accept a line number range.  However,
+it is possible to specify that the command does take a range (the -range
+attribute), or that it takes an arbitrary count value, either in the line
+number position (-range=N, like the :split command) or as a "count"
+argument (-count=N, like the :Next command).  The count will then be
+available in the argument with <count>.
+
+Possible attributes are:
+
+        -range      Range allowed, default is current line
+        -range=%    Range allowed, default is whole file (1,$)
+        -range=N    A count (default N) which is specified in the line
+                    number position (like :split); allows for zero line
+                    number.
+        -count=N    A count (default N) which is specified either in the line
+                    number position, or as an initial argument (like :Next).
+                    Specifying -count (without a default) acts like -count=0
+
+Note that -range=N and -count=N are mutually exclusive - only one should be
+specified.
+
+----
+== Easy~~~
+
+
++* How about the backward search and highlight
+
+---- viml,i1
+
+-   if delim !=# '/'
+
+++   if delim !=# '/' && delim !=# '?' 
+
+
+---- center
+Piece of Cake ~~
+
++ Not Work !!!
+
+----
+== Why
+
+
+* :help function-search-undo
+
+
++* OK
+
++* Close Issue, Not able to fix
+
+---- center
+
+Two Years Later
+
+----
+
+* Something Wrong on Me
+
++* Keep looking at Vim resource and document
+
++* I found `v:searchforward`
+
+----
+
+* :help v:searchforward
+
+
++v:searchforward            *v:searchforward* *searchforward-variable*
+        Search direction:  1 after a forward search, 0 after a
+        backward search.  It is reset to forward when directly setting
+        the last search pattern, see |quote/|.
+        Note that the value is restored when returning from a
+        function. |function-search-undo|.
+        Read-write.
+
+----
+
+* `v:searchforward` is what been reset when leave function
+
+* Another one been reset is `hlsearch`
+
+* How could I set it on my custom command
+
+---- viml,i1
+
+-command! -nargs=? M :call <SID>Ematch(<q-args>)
+
+++command! -nargs=? -count M :let v:searchforward = <SID>Ematch(<q-args>)
+
+---- center
+
+Highlight ?
+
+---- vim,i1
+
+-command! -nargs=? -count=0 M :let v:searchforward = <SID>Ematch(<count>, <q-args>)
+
+++command! -nargs=? -count=1 M :let v:searchforward = <SID>Ematch(<count>, 
+\    <q-args>) | if <count> > 1 | set hlsearch on | endif
+
+----
+== So...
+
+
+* How could I fix this two year long life bug?
+
++* Vim have great document
+
++* It documents almost every detail in Vim
+
++* If you want write Vim Script/Plugin
+
++* You must learn how to read/search in the document
+
+
+----
+== But
+
+
++* Bad SEO, hard to see it in search results
+
++* You need know the correct keyword
+
+----
+== Suggestion
+
+
++* Use `:help keyword` first
+
++* Add 'vim', 'doc' to your keywords when search on web
+
++* Search in vim doc directly
+
+
+* http://vimdoc.sourceforge.net/htmldoc/help.html
+
+----
+== Reading
+
+* Learn Vimscript the Hard Way
+  http://learnvimscriptthehardway.stevelosh.com/
 
 ----
 == Questions?
-----
-== Slide Source
-
-* https://github.com/othree/javascript-on-vim-slide/
 
 ----
 == The End
