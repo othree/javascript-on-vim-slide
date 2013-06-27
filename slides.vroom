@@ -10,7 +10,7 @@
 title: JavaScript on Vim
 indent: 5
 auto_size: 0
-height: 22
+height: 24
 width: 80
 vim_opts: '-u NONE'
 skip: 0
@@ -32,13 +32,14 @@ vimrc: |
   autocmd VimEnter,BufRead \d\+\l\= syntax match slideShipName    "\(*\s\|\.\s\+\|^\s*\|:\)\@<!\zs\<\u\h\+"
   autocmd VimEnter,BufRead \d\+\l\= syntax match slideShipName    "\(\u\l\+\)\{2,}"
   autocmd VimEnter,BufRead \d\+\l\= syntax match slideShipName    "\<\u[A-Z0-9_]\+\>"
-  autocmd VimEnter,BufRead \d\+\l\= syntax match slideShipName    "Tern\|Vimball\|Vim"
+  autocmd VimEnter,BufRead \d\+\l\= syntax match slideShipName    "Tern\|Vimball\|Vim\|\.vimrc"
   autocmd VimEnter,BufRead \d\+\l\= syntax match slideShipName    "Learn Vimscript the Hard Way"
   autocmd VimEnter,BufRead \d\+\l\= syntax match slideVimPlugin   "\<[a-zA-Z]\+\/[a-zA-Z-.]\+\>"
   autocmd VimEnter,BufRead \d\+\l\= syntax match slideVimPlugin   "\<[A-Za-z-0-9]\+\.vim\>"
   autocmd VimEnter,BufRead \d\+\l\= syntax match slideVimPlugin   "\<vim-[a-z-0-9]\+\>"
   autocmd VimEnter,BufRead \d\+\l\= syntax match slideVimPlugin   "Syntastic\|neocomplcache\|AutoComplPop\|SuperTab"
-  autocmd VimEnter,BufRead \d\+\l\= syntax match slideTitle       "\%^\_[ ]* \{10,}\S.*"
+  autocmd VimEnter,BufRead \d\+\l\= syntax match slideTitle       "\%^\_[ ]* \{10,}\S.*" contains=slideTitleFix
+  autocmd VimEnter,BufRead \d\+\l\= syntax match slideTitleFix    "_"
   autocmd VimEnter,BufRead \d\+\l\= syntax keyword slideWord      Gentlemen
   hi Normal ctermfg=231
   hi slideTitle ctermfg=172
@@ -52,6 +53,7 @@ vimrc: |
   hi slideVimCommand ctermfg=33
   hi slideVimCommandArg ctermfg=39
   hi slideCommand ctermfg=4
+  hi slideTitleFix ctermfg=16
 
 
 ---- center
@@ -243,10 +245,10 @@ syntax group (nameType, nameStatement, nameString, etc).
 
 ---- center
 
-ㄜ....
+_ㄜ....
 
 ---- 
-== 　　　　　　　　上樑不正下梁歪
+== _______上樑不正下梁歪
 
 
 +* Almost all other JavaScript syntax use *javaScript*
@@ -350,7 +352,7 @@ autocmd FileType javascript set omnifunc=jscomplete#CompleteJS
 
 ----
 
-* I have trouble to press <C-X><C-O>
+* Difficult to press <C-X><C-O>
 
 +* Alternative, you can use:
 +  * SuperTab
@@ -393,7 +395,7 @@ call extend(g:acp_behavior, behavs, 'keep')
 
 ---- center
 
-ㄜ....
+_ㄜ....
 
 ---- center
 
@@ -518,11 +520,10 @@ lint
 == CoffeeLint.vim ?
 
 
-+* .....
++* ...
 
 +* Ladies and Gentlemen,
-
-+* let me introduce ....
++  let me introduce ...
 
 ---- html,i-8
 
@@ -553,9 +554,8 @@ jgs `{{{{`       |     '--'       |  ___/ / /_/ / / / / /_/ /_/ (__  ) /_/ / /__
 
 +* Supports JavaScript, CoffeeScript...etc
 
-+* CoffeeScript supports CoffeeScript Compiler and CoffeeLint
-
-+* ... by default
++* CoffeeScript supports CoffeeScript Compiler and CoffeeLint ...
++  by default
 
 +* https://blog.othree.net/log/2013/06/21/syntastic-coffeelint/
 
@@ -674,14 +674,15 @@ Piece of Cake ~~
 
 +Not
 +Not Work
-+Not Work at All
-+Not Work at All !
-+Not Work at All !!
 +Not Work at All !!!!
 
-----
-== Why
+---- center
+Don't Know Why
 
+---- center
+20 months later...
+
+----
 
 * :help function-search-undo
 
@@ -699,7 +700,7 @@ Piece of Cake ~~
 
 ---- center
 
-Two Years Later
+One Month Later
 
 ----
 
@@ -788,6 +789,9 @@ Highlight ?
 
 * Learn Vimscript the Hard Way
   http://learnvimscriptthehardway.stevelosh.com/
+
+* My .vimrc
+  https://github.com/othree/rc/blob/master/home/.vimrc
 
 ---- center
 Questions?
