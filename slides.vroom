@@ -9,7 +9,7 @@
 # Basic config options.
 title: JavaScript on Vim
 indent: 5
-auto_size: 1
+auto_size: 0
 height: 22
 width: 80
 vim_opts: '-u NONE'
@@ -17,21 +17,41 @@ skip: 0
 
 vimrc: |
   set nowrap
-  hi def link slideLink VisualNOS
-  hi def link slideStar Label
-  hi def link slideTitle Title
-  hi def link slideVimPlugin Identifier
-  hi def link slideVimTag SpecialKey
-  hi def link slideVimCommand SpecialKey
-  hi def link slideCommand SpecialKey
-  autocmd BufRead \d\+\l\= syntax match slideLink   "http[^ ]\+"
-  autocmd BufRead \d\+\l\= syntax match slideStar   "^\s*\zs\*"
-  autocmd BufRead \d\+\l\= syntax match slideTitle  " \{15,}\zs.*"
-  autocmd BufRead \d\+\l\= syntax match slideVimPlugin   "\<[A-Za-z-0-9]\+\.vim\>"
-  autocmd BufRead \d\+\l\= syntax match slideVimPlugin   "\<vim-[a-z-0-9]\+\>"
-  autocmd BufRead \d\+\l\= syntax match slideVimTag      "<.*>"
-  autocmd BufRead \d\+\l\= syntax match slideVimCommand  " :[a-z-]\+\>"
-  autocmd BufRead \d\+\l\= syntax match slideCommand  "`.*`"
+  map Q <Nop>
+
+  autocmd VimEnter,BufRead \d\+\l\= syntax match slideLink        "http[^ ]\+"
+  autocmd VimEnter,BufRead \d\+\l\= syntax match slideStar        "^\s*\zs\*"
+  autocmd VimEnter,BufRead \d\+\l\= syntax match slideVimTag      "<.*>"
+  autocmd VimEnter,BufRead \d\+\l\= syntax match slideVimCommand  " :[a-zA-Z-]\+\>" skipwhite nextgroup=slideVimCommandArg
+  autocmd VimEnter,BufRead \d\+\l\= syntax match slideVimCommandArg  "[.:0-9a-z_-]\+" contained
+  autocmd VimEnter,BufRead \d\+\l\= syntax match slideCommand     "`.\{-}`"
+  autocmd VimEnter,BufRead \d\+\l\= syntax match slideStringQuote "'.\{-}'" contains=slideString
+  autocmd VimEnter,BufRead \d\+\l\= syntax match slideStringQuote '".\{-}"' contains=slideString
+  autocmd VimEnter,BufRead \d\+\l\= syntax match slideString      '[^'"]*' contained
+  autocmd VimEnter,BufRead \d\+\l\= syntax match slideEnhanced    "\*\w\+\*" transparent
+  autocmd VimEnter,BufRead \d\+\l\= syntax match slideShipName    "\(*\s\|\.\s\+\|^\s*\|:\)\@<!\zs\<\u\h\+"
+  autocmd VimEnter,BufRead \d\+\l\= syntax match slideShipName    "\(\u\l\+\)\{2,}"
+  autocmd VimEnter,BufRead \d\+\l\= syntax match slideShipName    "\<\u[A-Z0-9_]\+\>"
+  autocmd VimEnter,BufRead \d\+\l\= syntax match slideShipName    "Tern\|Vimball\|Vim"
+  autocmd VimEnter,BufRead \d\+\l\= syntax match slideShipName    "Learn Vimscript the Hard Way"
+  autocmd VimEnter,BufRead \d\+\l\= syntax match slideVimPlugin   "\<[a-zA-Z]\+\/[a-zA-Z-.]\+\>"
+  autocmd VimEnter,BufRead \d\+\l\= syntax match slideVimPlugin   "\<[A-Za-z-0-9]\+\.vim\>"
+  autocmd VimEnter,BufRead \d\+\l\= syntax match slideVimPlugin   "\<vim-[a-z-0-9]\+\>"
+  autocmd VimEnter,BufRead \d\+\l\= syntax match slideVimPlugin   "Syntastic\|neocomplcache\|AutoComplPop\|SuperTab"
+  autocmd VimEnter,BufRead \d\+\l\= syntax match slideTitle       "\%^\_[ ]* \{10,}\S.*"
+  autocmd VimEnter,BufRead \d\+\l\= syntax keyword slideWord      Gentlemen
+  hi Normal ctermfg=231
+  hi slideTitle ctermfg=172
+  hi slideVimPlugin ctermfg=82
+  hi slideLink cterm=underline ctermfg=33
+  hi slideString cterm=underline
+  hi slideStar ctermfg=226
+  hi slideEnhanced cterm=bold ctermfg=231
+  hi slideShipName cterm=bold ctermfg=123
+  hi slideVimTag ctermfg=4
+  hi slideVimCommand ctermfg=33
+  hi slideVimCommandArg ctermfg=39
+  hi slideCommand ctermfg=4
 
 
 ---- center
@@ -70,7 +90,7 @@ by othree
 
 +* Problems I face while maintain these projects
 
-+* How to get familiar with Vim Document
++* How to get familiar with Vim Script
 
 ---- viml,i4
 
@@ -95,15 +115,17 @@ by othree
 == Other Plugins
 
 
-+* jscomplete.vim
-+* vim-snipmate
-+* Syntastic
++* teramako/jscomplete.vim
+
++* garbas/vim-snipmate
+
++* scrooloose/Syntastic
 
 ----
 == html5.vim
 
 
-* 290 stars
+* 291 ★
 
 * Build this for personal need
 
@@ -224,12 +246,12 @@ syntax group (nameType, nameStatement, nameString, etc).
 ㄜ....
 
 ---- 
-== 上樑不正下梁歪
+== 　　　　　　　　上樑不正下梁歪
 
 
 +* Almost all other JavaScript syntax use *javaScript*
 
-+* LiveScript syntax use *liveScript*
++* TypeScript syntax use *typeScript*
 
 ---- 
 == More Worse
@@ -237,9 +259,9 @@ syntax group (nameType, nameStatement, nameString, etc).
 
 +* I'm writing javascript-libraries-syntax.vim
 
-+* And I hope these keywords can be used in complete function
-
-+* I can't use library name as group name
++* Hard use automation to port my syntax to CoffeeScript and LiveScript
++  * CoffeeScript: *coffee*
++  * LiveScript: *ls*
 
 ----
 == To Solve This
@@ -247,27 +269,14 @@ syntax group (nameType, nameStatement, nameString, etc).
 
 +* Contact to author of SyntaxComplete
 
-+* Contact to author of LiveScript syntax file
++* Contact to author of TypeScript syntax file
 
 +* Contact to vimdev
 
 +* Walk around for my libraries syntax
 
-----
-== Response
-
-
-+* SyntaxComplete author David Fishburn build a new version (13)
-
-+* User can assign custom rule for syntax group name
-
-
-+* No response from vimdev...
-
-+* So I start host my *javascript-syntax.vim*
-
-
-+* How about the walk around?
+---- center
+The Walk Around Solution
 
 ---- sh,i4
 
@@ -292,6 +301,23 @@ prelude.typescript.vim
 update.sh
 
 ----
+== Responses
+
+
++* SyntaxComplete author David Fishburn build a new version (13)
+
++* TypeScript syntax author say he will take a look
+
++* User can assign custom rule for syntax group name
+  Great for my libraries syntax project
+
++* Response from vimdev...
++  * Report to the author of the syntax file
+
++* So I start host my *javascript-syntax.vim*
+
+
+----
 
 ---- center
 
@@ -311,12 +337,16 @@ autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 * Then press <C-X><C-O>
 
 ----
-== Default JS Complete
+== Default JS Complete Function
 
 
 +* Out of date
 
 +* I use *jscomplete.vim*
+
+---- viml,i4
+
+autocmd FileType javascript set omnifunc=jscomplete#CompleteJS
 
 ----
 
@@ -325,6 +355,7 @@ autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 +* Alternative, you can use:
 +  * SuperTab
 +  * AutoComplPop
++  * neocomplcache
 
 ----
 == AutoComplPop
@@ -410,9 +441,10 @@ Maintain my own AutoComplPop
 == The Vim EcoSystem Changes
 
 
-+* pathogen by Tim Pope
++* pathogen.vim by Tim Pope
 
-+* Depends on Git, HG ...etc
++* Not depends on Git, HG ...etc
+  But work very well with them
 
 +* I use Vundle, it depends on Github
 
@@ -483,16 +515,33 @@ lint
 +* CoffeeLint borns....
 
 ----
-== CoffeeLin.vim ?
+== CoffeeLint.vim ?
 
 
 +* .....
 
-+* Let me introduce ....
++* Ladies and Gentlemen,
 
----- center
++* let me introduce ....
 
-Syntastic
+---- html,i-8
+
+              / \,,_  .'|
+           ,{{| /}}}}/_.'            _____________________________________________
+          }}}}` '{{'  '.            /                                             \
+        {{{{{    _   ;, \          /            Ladies and Gentlemen,              \
+     ,}}}}}}    /o`\  ` ;)        |                                                |
+    {{{{{{   /           (        |                 this is ...                    |
+    }}}}}}   |            \       |                                                |
+   {{{{{{{{   \            \      |                                                |
+   }}}}}}}}}   '.__      _  |     |    _____             __             __  _      |
+   {{{{{{{{       /`._  (_\ /     |   / ___/__  ______  / /_____ ______/ /_(_)____ |
+    }}}}}}'      |    //___/   --=:   \__ \/ / / / __ \/ __/ __ `/ ___/ __/ / ___/ |
+jgs `{{{{`       |     '--'       |  ___/ / /_/ / / / / /_/ /_/ (__  ) /_/ / /__   |
+     }}}`                         | /____/\__, /_/ /_/\__/\__,_/____/\__/_/\___/   |
+                                  |      /____/                                    |
+                                  |                                               /
+                                   \_____________________________________________/
 
 ----
 == Syntastic
@@ -582,7 +631,7 @@ The Vim Document
 
 * :help command-count
 
----- vim
+----
 
 Range handling                          E177 E178 :command-range
                                                         :command-count
@@ -620,10 +669,15 @@ specified.
 ++   if delim !=# '/' && delim !=# '?' 
 
 
----- center
+---- center,replace
 Piece of Cake ~~
 
-+ Not Work !!!
++Not
++Not Work
++Not Work at All
++Not Work at All !
++Not Work at All !!
++Not Work at All !!!!
 
 ----
 == Why
@@ -631,10 +685,17 @@ Piece of Cake ~~
 
 * :help function-search-undo
 
+                                                function-search-undo
+                        The last used search pattern and the redo command "."
+                        will not be changed by the function.  This also
+                        implies that the effect of :nohlsearch is undone
+                        when the function returns.
+
+----
 
 +* OK
 
-+* Close Issue, Not able to fix
++* Close issue, impossible to fix
 
 ---- center
 
@@ -642,7 +703,7 @@ Two Years Later
 
 ----
 
-* Something Wrong on Me
+* Something *wrong* on me
 
 +* Keep looking at Vim resource and document
 
@@ -679,12 +740,12 @@ Two Years Later
 
 Highlight ?
 
----- vim,i1
+---- viml,i1
 
 -command! -nargs=? -count=0 M :let v:searchforward = <SID>Ematch(<count>, <q-args>)
 
-++command! -nargs=? -count=1 M :let v:searchforward = <SID>Ematch(<count>, 
-\    <q-args>) | if <count> > 1 | set hlsearch on | endif
+++command! -nargs=? -count=1 M :let v:searchforward = 
+\    <SID>Ematch(<count>, <q-args>) | if <count> > 1 | set hlsearch on | endif
 
 ----
 == So...
@@ -696,9 +757,9 @@ Highlight ?
 
 +* It documents almost every detail in Vim
 
-+* If you want write Vim Script/Plugin
++* If you want write Vim Script or Plugin
 
-+* You must learn how to read/search in the document
++* You must learn how to read & search in the document
 
 
 ----
@@ -728,8 +789,11 @@ Highlight ?
 * Learn Vimscript the Hard Way
   http://learnvimscriptthehardway.stevelosh.com/
 
-----
-== Questions?
+---- center
+Questions?
 
-----
-== The End
+---- center
+Thank you
+
+---- center
+The End
