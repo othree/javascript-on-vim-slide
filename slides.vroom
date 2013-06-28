@@ -38,7 +38,7 @@ vimrc: |
   autocmd VimEnter,BufRead \d\+\l\= syntax match slideVimPlugin   "\<[a-zA-Z]\+\/[a-zA-Z-.]\+\>"
   autocmd VimEnter,BufRead \d\+\l\= syntax match slideVimPlugin   "\<[A-Za-z-0-9]\+\.vim\>"
   autocmd VimEnter,BufRead \d\+\l\= syntax match slideVimPlugin   "\<vim-[a-z-0-9]\+\>"
-  autocmd VimEnter,BufRead \d\+\l\= syntax match slideVimPlugin   "Syntastic\|neocomplcache\|AutoComplPop\|SuperTab"
+  autocmd VimEnter,BufRead \d\+\l\= syntax match slideVimPlugin   "Syntastic\|neocomplcache\|AutoComplPop\|SuperTab\|Vundle\|NeoBundle"
   autocmd VimEnter,BufRead \d\+\l\= syntax match slideTitle       "\%^\_[ ]* \{10,}\S.*" contains=slideTitleFix
   autocmd VimEnter,BufRead \d\+\l\= syntax match slideTitleFix    "_"
   autocmd VimEnter,BufRead \d\+\l\= syntax keyword slideWord      Gentlemen
@@ -56,12 +56,11 @@ vimrc: |
   hi slideCommand ctermfg=4
   hi slideTitleFix ctermfg=16
 
-
 ---- center
 
 JavaScript on Vim
 
-by othree
+othree@COSCUP
 
 ----
 == Slide Source
@@ -75,25 +74,25 @@ by othree
 
 * othree
 
-+* on Github, Flickr, Twitter
++* @ Github, Flickr, Twitter
 
 +* F2E at HTC
 
 +* Maintains some Vim plugin
 
 ----
-== Agenda
+== I Will Talk About
 
 
-+* What plugin I use as a F2E
++* Plugins I am using as a F2E
 
 +* Big problem about JavaScript syntax
 
 +* The eco system of Vim community
 
-+* Problems I face while maintain these projects
++* Problems maintaining these projects
 
-+* How to get familiar with Vim Script
++* Get familiar with Vim Document
 
 ---- viml,i4
 
@@ -105,14 +104,14 @@ by othree
 
 +* html5.vim
 
-+* javascript-syntax.vim
++* vim-javascript-syntax
 +* javascript-libraries-syntax.vim
 
 +* jslint.vim
 * coffee-check.vim
 
 +* eregex.vim
-+* vim-autocomplpop
++* AutoComplPop
 
 ----
 == Other Plugins
@@ -132,9 +131,14 @@ by othree
 
 * Build this for personal need
 
-* But no more need when I complete it
+* But no more need when I alomost complete it
+
++* Not dead
++* Looking for contributor add more new Web Standards
 
 ----
+
+1st
 
 ---- center
 Syntax
@@ -274,7 +278,7 @@ _ㄜ....
 
 +* Contact to author of TypeScript syntax file
 
-+* Contact to vimdev
++* Ask on vim_dev mailing-list
 
 +* Walk around for my libraries syntax
 
@@ -309,18 +313,32 @@ update.sh
 
 +* SyntaxComplete author David Fishburn build a new version (13)
 
-+* TypeScript syntax author say he will take a look
-
 +* User can assign custom rule for syntax group name
   Great for my libraries syntax project
 
-+* Response from vimdev...
++* TypeScript syntax author say he will take a look
+
++* Response from vimdev:
 +  * Report to the author of the syntax file
++  * No response from the author
 
-+* So I start host my *javascript-syntax.vim*
-
++* So I start host my *vim-javascript-syntax*
 
 ----
+== othree/vim-javascript-syntax
+
+
++* Fix group name issue
+
++* Add new HTML5 features
+
++* Better JSDoc support
+
++* Fix lots of bugs
+
+----
+
+2nd
 
 ---- center
 
@@ -329,7 +347,11 @@ Complete
 ----
 == OmniComplete
 
-* Need a little configure
+* Vim 7
+
+* <C-X><C-O>
+
+* But also require a little configure
 
 ---- viml,i4
 
@@ -431,7 +453,7 @@ Maintain my own AutoComplPop
 +* https://blog.othree.net/log/2013/06/25/autocomplpop-and-snipmate/
 
 ----
-== The Old Vim EcoSystem
+== The Old Vim Way for Plugins
 
 
 +* Vim Scripts
@@ -446,26 +468,38 @@ Maintain my own AutoComplPop
 
 +* pathogen.vim by Tim Pope
 
+----
+== The pathogen Way
+
++* Separate all plugins
+
++* No more mess in `.vim` folder
+
++* Uninstall plugins never hard
+
++* Update all plugins automatically
+
++* Dependency is not hard anymore
+
+----
+
 +* Not depends on Git, HG ...etc
   But work very well with them
 
 +* I use Vundle, it depends on Github
 
-+* More and more Vim plugin only exists on Github or other repo sites
++* More and more Vim plugin lives on Github or other repo sites
 +  * ex: garbas/vim-snipmates
 +        othree/vim-autocomplpop    
 
 ----
-== The pathogen Way
+== Related Manager
 
++* pathogen.vim
 
-+* Separate all plugins
++* Vundle
 
-+* No more mass in .vim folder
-
-+* Uninstall plugins never hard
-
-+* Update all plugins automatically
++* NeoBundle
 
 ---- center
 
@@ -484,13 +518,17 @@ Thanks You, Tim Pope !!
 
 +* Tell us if you have experience on Tern
 
+----
+
+3rd
+
 ---- center
 
 lint
 
 
 ----
-== JSLint
+== JSLint for 10 secs
 
 
 * JSLint.vim
@@ -561,6 +599,28 @@ jgs `{{{{`       |     '--'       |  ___/ / /_/ / / / / /_/ /_/ (__  ) /_/ / /__
 +* https://blog.othree.net/log/2013/06/21/syntastic-coffeelint/
 
 ----
+== Syntastic for JavaScript
+
+
++* Supports JSLint, JSHint, Closure Linter,
+  JavaScript Lint, Closure Compiler
+
++* For other filetypes:
+  https://github.com/scrooloose/syntastic/tree/master/syntax_checkers
+
+----
+== JSLint
+
++* Hurts your feeling
+
++* But it worth!!
+
++* For the errors you don't understand
+  http://jslinterrors.com/
+
+----
+
+One more thing
 
 ---- center
 
@@ -594,6 +654,8 @@ The Vim Document
 +* Do you know `\w` still works ?
 
 +* Do you know `[\w]` is not what you think ?
+
++* How about `\_.`, `\%^`, `\@<!`, `{-}`, `\_[]`
 
 
 +* What if I want a familiar RegExp format, like Perl or JavaScript
@@ -721,7 +783,7 @@ One Month Later
 
 ---- help
 
-+v:searchforward            *v:searchforward* *searchforward-variable*
+v:searchforward            *v:searchforward* *searchforward-variable*
         Search direction:  1 after a forward search, 0 after a
         backward search.  It is reset to forward when directly setting
         the last search pattern, see |quote/|.
