@@ -19,6 +19,7 @@ vimrc: |
   set nowrap
   map Q <Nop>
 
+  autocmd VimEnter,BufRead *.help set ft=help
   autocmd VimEnter,BufRead \d\+\l\= syntax match slideLink        "http[^ ]\+"
   autocmd VimEnter,BufRead \d\+\l\= syntax match slideStar        "^\s*\zs\*"
   autocmd VimEnter,BufRead \d\+\l\= syntax match slideVimTag      "<.*>"
@@ -631,26 +632,26 @@ The Vim Document
 
 * :help command-count
 
-----
+---- help
 
-Range handling                          E177 E178 :command-range
-                                                        :command-count
+Range handling                          *E177* *E178* *:command-range*
+                                                        *:command-count*
 By default, user-defined commands do not accept a line number range.  However,
 it is possible to specify that the command does take a range (the -range
 attribute), or that it takes an arbitrary count value, either in the line
-number position (-range=N, like the :split command) or as a "count"
-argument (-count=N, like the :Next command).  The count will then be
-available in the argument with <count>.
+number position (-range=N, like the |:split| command) or as a "count"
+argument (-count=N, like the |:Next| command).  The count will then be
+available in the argument with |<count>|.
 
 Possible attributes are:
 
         -range      Range allowed, default is current line
         -range=%    Range allowed, default is whole file (1,$)
         -range=N    A count (default N) which is specified in the line
-                    number position (like :split); allows for zero line
+                    number position (like |:split|); allows for zero line
                     number.
         -count=N    A count (default N) which is specified either in the line
-                    number position, or as an initial argument (like :Next).
+                    number position, or as an initial argument (like |:Next|).
                     Specifying -count (without a default) acts like -count=0
 
 Note that -range=N and -count=N are mutually exclusive - only one should be
@@ -686,11 +687,15 @@ Don't Know Why
 
 * :help function-search-undo
 
-                                                function-search-undo
-                        The last used search pattern and the redo command "."
-                        will not be changed by the function.  This also
-                        implies that the effect of :nohlsearch is undone
-                        when the function returns.
+---- help
+
+                                    *function-search-undo*
+			The last used search pattern and the redo command "."
+			will not be changed by the function.  This also
+			implies that the effect of |:nohlsearch| is undone
+			when the function returns.
+
+
 
 ----
 
@@ -714,6 +719,7 @@ One Month Later
 
 * :help v:searchforward
 
+---- help
 
 +v:searchforward            *v:searchforward* *searchforward-variable*
         Search direction:  1 after a forward search, 0 after a
