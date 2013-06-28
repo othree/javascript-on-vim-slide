@@ -624,11 +624,11 @@ One more thing
 
 ---- center
 
-The Vim Document
+Regular Expression
 
 ----
 
-* Let's start from find command `/`
+* Find command `/`
 
 +* It supports regular expression
 
