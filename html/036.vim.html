@@ -1,0 +1,59 @@
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script>
+function navigate(e) {
+    var keynum = (window.event) // IE
+        ? e.keyCode
+        : e.which;
+    if (keynum == 8) {
+        window.location = "035z" + ".html";
+        return false;
+    }
+    if (keynum == 13 || keynum == 32) {
+        window.location = "037" + ".html";
+        return false;
+    }
+    if (keynum == 73 || keynum == 105) {
+        window.location = "index.html";
+        return false;
+    }
+    return true;
+}
+</script>
+</head>
+<body onkeydown="return navigate(event)">
+<div style="border-style: solid ; border-width: 0px ; font-size: x-large">
+<pre>    let behavs = { 'javascript': [], 'html': [] }
+        call add(behavs.javascript, {
+            \   'command'      : &quot;\&lt;C-x&gt;\&lt;C-u&gt;&quot;,
+            \   'completefunc' : 'acp#completeSnipmate',
+            \   'meets'        : 'acp#meetsForSnipmate',
+            \   'onPopupClose' : 'acp#onPopupCloseSnipmate',
+            \   'repeat'       : 0,
+        \})
+        call add(behavs.javascript, {
+            \   'command' : g:acp_behaviorKeywordCommand,
+            \   'meets'   : 'acp#meetsForKeyword',
+            \   'repeat'  : 0,
+            \ })
+        call add(behavs.javascript, {
+            \   'command' : &quot;\&lt;C-x&gt;\&lt;C-o&gt;&quot;,
+            \   'meets'   : 'AcpMeetsForJavaScript',
+            \   'repeat'  : 0,
+        \})
+
+    let g:acp_behavior = {}
+    call extend(g:acp_behavior, behavs, 'keep')
+
+
+
+</pre>
+</div>
+<br>
+<div style="font-size: small">
+<p></p>
+</div>
+</body>
+</html>

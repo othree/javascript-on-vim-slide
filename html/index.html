@@ -1,0 +1,224 @@
+<html>
+<head>
+<title>JavaScript on Vim</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script>
+function navigate(e) {
+    var keynum = (window.event) // IE
+        ? e.keyCode
+        : e.which;
+    if (keynum == 13 || keynum == 32) {
+        window.location = "001.html";
+        return false;
+    }
+    return true;
+}
+</script>
+<style>
+body {
+    font-family: sans-serif;
+}
+h4 {
+    color: #888;
+}
+</style>
+</head>
+<body onkeydown="return navigate(event)">
+<h4>Use SPACEBAR to peruse the slides or click one to start...<h4>
+<h1>JavaScript on Vim</h1>
+<ul>
+<li><a href="001.html">JavaScript on Vim</a></li>
+<li><a href="002.html">Slide Source</a></li>
+<li><a href="003.html">me</a></li>
+<li><a href="004.html">I Will Talk About</a></li>
+<li><a href="005.vim.html">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</a></li>
+<li><a href="006.html">My Vim Repos</a></li>
+<li><a href="007.html">Other Plugins</a></li>
+<li><a href="008.html">html5.vim</a></li>
+<li><a href="009.html">1st</a></li>
+<li><a href="010.html">Syntax</a></li>
+<li><a href="011.html">Syntax File for JavaScript</a></li>
+<li><a href="012.html">Look Into SyntaxComplete</a></li>
+<li><a href="013.vim.html">while ftindex &gt; -1</a></li>
+<li><a href="014.html">How About JavaScript Syntax</a></li>
+<li><a href="015.vim.html">if version &gt;= 508 || !exists(&quot;did_javascript_syn_inits&quot;)</a></li>
+<li><a href="016.html">'javaScript' vs 'javascript'</a></li>
+<li><a href="017.js.html">// Are they the same?</a></li>
+<li><a href="018.html">*44.12*  Portable syntax file layout</a></li>
+<li><a href="019.html">_ㄜ....</a></li>
+<li><a href="020.html">_______上樑不正下梁歪</a></li>
+<li><a href="021.html">More Worse</a></li>
+<li><a href="022.html">To Solve This</a></li>
+<li><a href="023.html">The Walk Around Solution</a></li>
+<li><a href="024.sh.html">&gt; ls javascript-libraries-syntax.vim/autoload/syntax/*</a></li>
+<li><a href="025.html">Responses</a></li>
+<li><a href="026.html">othree/vim-javascript-syntax</a></li>
+<li><a href="027.html">2nd</a></li>
+<li><a href="028.html">Complete</a></li>
+<li><a href="029.html">OmniComplete</a></li>
+<li><a href="030.vim.html">autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS</a></li>
+<li><a href="031.html">* Then press &lt;C-X&gt;&lt;C-O&gt;</a></li>
+<li><a href="032.html">Default JS Complete Function</a></li>
+<li><a href="033.vim.html">autocmd FileType javascript set omnifunc=jscomplete#CompleteJS</a></li>
+<li><a href="034.html">* Difficult to press &lt;C-X&gt;&lt;C-O&gt;</a></li>
+<li><a href="035.html">AutoComplPop</a></li>
+<li><a href="036.vim.html">let behavs = { 'javascript': [], 'html': [] }</a></li>
+<li><a href="037.html">_ㄜ....</a></li>
+<li><a href="038.html">Maintain my own AutoComplPop</a></li>
+<li><a href="039.html">My AutoComplPop</a></li>
+<li><a href="040.html">What happened with snipmate</a></li>
+<li><a href="041.html">But</a></li>
+<li><a href="042.html">The Old Vim Way for Plugins</a></li>
+<li><a href="043.html">The Vim EcoSystem Changes</a></li>
+<li><a href="044.html">The pathogen Way</a></li>
+<li><a href="045.html">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</a></li>
+<li><a href="046.html">Related Manager</a></li>
+<li><a href="047.html">Thanks You, Tim Pope !!</a></li>
+<li><a href="048.html">Last Slide for Complete</a></li>
+<li><a href="049.html">3rd</a></li>
+<li><a href="050.html">lint</a></li>
+<li><a href="051.html">JSLint for 10 secs</a></li>
+<li><a href="052.html">CoffeeCheck.vim</a></li>
+<li><a href="053.html">CoffeeLint.vim ?</a></li>
+<li><a href="054.html.html">/ \,,_  .'|</a></li>
+<li><a href="055.html">Syntastic</a></li>
+<li><a href="056.html">Syntastic for JavaScript</a></li>
+<li><a href="057.html">JSLint</a></li>
+<li><a href="058.html">One more thing</a></li>
+<li><a href="059.html">Regular Expression</a></li>
+<li><a href="060.html">* Find command `/`</a></li>
+<li><a href="061.html">Vim's Regular Expression</a></li>
+<li><a href="062.html">For Example</a></li>
+<li><a href="063.html">eregex.vim</a></li>
+<li><a href="064.html">Bugs</a></li>
+<li><a href="065.html">The Count Parameter</a></li>
+<li><a href="066.help.html">Range handling                          *E177* *E178* *:command-range*</a></li>
+<li><a href="067.html">Easy~~~</a></li>
+<li><a href="068.vim.html">-   if delim !=# '/'</a></li>
+<li><a href="069.html">Piece of Cake ~~</a></li>
+<li><a href="070.html">Don't Know Why</a></li>
+<li><a href="071.html">20 months later...</a></li>
+<li><a href="072.html">* :help function-search-undo</a></li>
+<li><a href="073.help.html">*function-search-undo*</a></li>
+<li><a href="074.html">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</a></li>
+<li><a href="075.html">One Month Later</a></li>
+<li><a href="076.html">* Something *wrong* on me</a></li>
+<li><a href="077.html">* :help v:searchforward</a></li>
+<li><a href="078.help.html">v:searchforward            *v:searchforward* *searchforward-variable*</a></li>
+<li><a href="079.html">* `v:searchforward` is what been reset when leave function</a></li>
+<li><a href="080.vim.html">-command! -nargs=? M :call &lt;SID&gt;Ematch(&lt;q-args&gt;)</a></li>
+<li><a href="081.html">Highlight ?</a></li>
+<li><a href="082.vim.html">-command! -nargs=? -count=0 M :let v:searchforward = &lt;SID&gt;Ematch(&lt;count&gt;, &lt;q-args&gt;)</a></li>
+<li><a href="083.html">So...</a></li>
+<li><a href="084.html">But</a></li>
+<li><a href="085.html">Suggestion</a></li>
+<li><a href="086.html">Reading</a></li>
+<li><a href="087.html">Questions?</a></li>
+<li><a href="088.html">Thank you</a></li>
+<li><a href="089.html">The End</a></li>
+</ul>
+<p>This presentation was generated by <a
+href="http://ingydotnet.github.com/vroom-pm">Vroom</a>. Use &lt;SPACE&gt; key to go
+forward and &lt;BACKSPACE&gt; to go backwards.
+</p>
+</body>
+</html>
