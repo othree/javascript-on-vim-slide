@@ -22,6 +22,7 @@ vimrc: |
   autocmd VimEnter,BufRead *.help set ft=help
   autocmd VimEnter,BufRead \d\+\l\= syntax match slideLink        "http[^ ]\+"
   autocmd VimEnter,BufRead \d\+\l\= syntax match slideStar        "^\s*\zs\*"
+  autocmd VimEnter,BufRead \d\+\l\= syntax match slideStar        "^\s*\zs•"
   autocmd VimEnter,BufRead \d\+\l\= syntax match slideVimTag      "<.*>"
   autocmd VimEnter,BufRead \d\+\l\= syntax match slideVimCommand  " :[a-zA-Z-]\+\>" skipwhite nextgroup=slideVimCommandArg
   autocmd VimEnter,BufRead \d\+\l\= syntax match slideVimCommandArg  "[.:0-9a-z_-]\+" contained
@@ -30,7 +31,7 @@ vimrc: |
   autocmd VimEnter,BufRead \d\+\l\= syntax match slideStringQuote '".\{-}"' contains=slideString
   autocmd VimEnter,BufRead \d\+\l\= syntax match slideString      '[^'"]*' contained
   autocmd VimEnter,BufRead \d\+\l\= syntax match slideEnhanced    "\*\w\+\*" transparent
-  autocmd VimEnter,BufRead \d\+\l\= syntax match slideShipName    "\(*\s\|\.\s\+\|^\s*\|:\)\@<!\zs\<\u\h\+"
+  autocmd VimEnter,BufRead \d\+\l\= syntax match slideShipName    "\(*\s\|\.\s\+\|^\s*\|•\s\|^\s•\|:\)\@<!\zs\<\u\h\+"
   autocmd VimEnter,BufRead \d\+\l\= syntax match slideShipName    "\(\u\l\+\)\{2,}"
   autocmd VimEnter,BufRead \d\+\l\= syntax match slideShipName    "\<\u[A-Z0-9_]\+\>"
   autocmd VimEnter,BufRead \d\+\l\= syntax match slideShipName    "Tern\|Vimball\|Vim\|\.vimrc"
@@ -65,34 +66,33 @@ othree@COSCUP
 ----
 == Slide Source
 
-
-* https://github.com/othree/javascript-on-vim-slide/
+• https://github.com/othree/javascript-on-vim-slide/
 
 ----
 == me
 
 
-* othree
+• othree
 
-+* @ Github, Flickr, Twitter
++• @ Github, Flickr, Twitter
 
-+* F2E at HTC
++• F2E at HTC
 
-+* Maintains some Vim plugin
++• Maintains some Vim plugin
 
 ----
 == I Will Talk About
 
 
-+* Plugins I am using as a F2E
++• Plugins I am using as a F2E
 
-+* Big problem about JavaScript syntax
++• Big problem about JavaScript syntax
 
-+* The eco system of Vim community
++• The eco system of Vim community
 
-+* Problems maintaining these projects
++• Problems maintaining these projects
 
-+* Get familiar with Vim Document
++• Get familiar with Vim Document
 
 ---- viml,i4
 
@@ -100,41 +100,41 @@ othree@COSCUP
 == My Vim Repos
  
 
-* https://github.com/search?q=%40othree&type=Repositories&l=VimL
+• https://github.com/search?q=%40othree&type=Repositories&l=VimL
 
-+* html5.vim
++• html5.vim
 
-+* vim-javascript-syntax
-+* javascript-libraries-syntax.vim
++• vim-javascript-syntax
++• javascript-libraries-syntax.vim
 
-+* jslint.vim
-* coffee-check.vim
++• jslint.vim
+• coffee-check.vim
 
-+* eregex.vim
-+* AutoComplPop
++• eregex.vim
++• AutoComplPop
 
 ----
 == Other Plugins
 
 
-+* teramako/jscomplete.vim
++• teramako/jscomplete.vim
 
-+* garbas/vim-snipmate
++• garbas/vim-snipmate
 
-+* scrooloose/Syntastic
++• scrooloose/Syntastic
 
 ----
 == html5.vim
 
 
-* 291 ★
+• 291 ★
 
-* Build this for personal need
+• Build this for personal need
 
-* But no more need when I alomost complete it
+• But no more need when I alomost complete it
 
-+* Not dead
-+* Looking for contributor add more new Web Standards
++• Not dead
++• Looking for contributor add more new Web Standards
 
 ----
 
@@ -147,11 +147,11 @@ Syntax
 == Syntax File for JavaScript
 
 
-* Have built in version
+• Have built in version
 
-* Vim 7.3 introduce SyntaxComplete
+• Vim 7.3 introduce SyntaxComplete
 
-* Not work with javascript... Why?
+• Not work with javascript... Why?
 
 ---- center
   
@@ -241,7 +241,7 @@ print('javascript' === 'javaScript');
 == *44.12*  Portable syntax file layout
 
 
-* :help 44.12
+• :help 44.12
 
 Choose a good, descriptive name for your syntax file.  Use lowercase letters
 and digits.  Don't make it too long, it is used in many places: The name of
@@ -256,31 +256,31 @@ _ㄜ....
 == _______上樑不正下梁歪
 
 
-+* Almost all other JavaScript syntax use *javaScript*
++• Almost all other JavaScript syntax use *javaScript*
 
-+* TypeScript syntax use *typeScript*
++• TypeScript syntax use *typeScript*
 
 ---- 
 == More Worse
 
 
-+* I'm writing javascript-libraries-syntax.vim
++• I'm writing javascript-libraries-syntax.vim
 
-+* Hard use automation to port my syntax to CoffeeScript and LiveScript
-+  * CoffeeScript: *coffee*
-+  * LiveScript: *ls*
++• Hard use automation to port my syntax to CoffeeScript and LiveScript
++   • CoffeeScript: *coffee*
++   • LiveScript: *ls*
 
 ----
 == To Solve This
 
 
-+* Contact to author of SyntaxComplete
++• Contact to author of SyntaxComplete
 
-+* Contact to author of TypeScript syntax file
++• Contact to author of TypeScript syntax file
 
-+* Ask on vim_dev mailing-list
++• Ask on vim_dev mailing-list
 
-+* Walk around for my libraries syntax
++• Walk around for my libraries syntax
 
 ---- center
 The Walk Around Solution
@@ -311,30 +311,30 @@ update.sh
 == Responses
 
 
-+* SyntaxComplete author David Fishburn build a new version (13)
++• SyntaxComplete author David Fishburn build a new version (13)
 
-+* User can assign custom rule for syntax group name
-  Great for my libraries syntax project
++• User can assign custom rule for syntax group name
+   Great for my libraries syntax project
 
-+* TypeScript syntax author say he will take a look
++• TypeScript syntax author say he will take a look
 
-+* Response from vimdev:
-+  * Report to the author of the syntax file
-+  * No response from the author
++• Response from vimdev:
++   • Report to the author of the syntax file
++   • No response from the author
 
-+* So I start host my *vim-javascript-syntax*
++• So I start host my *vim-javascript-syntax*
 
 ----
 == othree/vim-javascript-syntax
 
 
-+* Fix group name issue
++• Fix group name issue
 
-+* Add new HTML5 features
++• Add new HTML5 features
 
-+* Better JSDoc support
++• Better JSDoc support
 
-+* Fix lots of bugs
++• Fix lots of bugs
 
 ----
 
@@ -347,11 +347,11 @@ Complete
 ----
 == OmniComplete
 
-* Vim 7
+• Vim 7
 
-* <C-X><C-O>
+• <C-X><C-O>
 
-* But also require a little configure
+• But also require a little configure
 
 ---- viml,i4
 
@@ -359,15 +359,15 @@ autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 
 ----
 
-* Then press <C-X><C-O>
+• Then press <C-X><C-O>
 
 ----
 == Default JS Complete Function
 
 
-+* Out of date
++• Out of date
 
-+* I use *jscomplete.vim*
++• I use *jscomplete.vim*
 
 ---- viml,i4
 
@@ -375,22 +375,22 @@ autocmd FileType javascript set omnifunc=jscomplete#CompleteJS
 
 ----
 
-* Difficult to press <C-X><C-O>
+• Difficult to press <C-X><C-O>
 
-+* Alternative, you can use:
-+  * SuperTab
-+  * AutoComplPop
-+  * neocomplcache
++• Alternative, you can use:
++   • SuperTab
++   • AutoComplPop
++   • neocomplcache
 
 ----
 == AutoComplPop
 
 
-* Automatically trigger <C-X><C-O>
+• Automatically trigger <C-X><C-O>
 
-+* Author not maintains anymore
++• Author not maintains anymore
 
-+* Don't have default setting for JavaScript
++• Don't have default setting for JavaScript
 
 ---- viml,i4
 
@@ -428,78 +428,78 @@ Maintain my own AutoComplPop
 == My AutoComplPop
 
 
-+* Add more filetype default support
++• Add more filetype default support
 
-+* Supports snipmate again
++• Supports snipmate again
 
 ----
 == What happened with snipmate
 
 
-+* Author don't maintains....
++• Author don't maintains....
 
 
 ----
 == But
 
 
-+* A new fork on Github by Rok Garbas, Marc Weber, and Adnan Zafar
++• A new fork on Github by Rok Garbas, Marc Weber, and Adnan Zafar
 
-+* Breaks old way to work with AutoComplPop
++• Breaks old way to work with AutoComplPop
 
-+* So I fixed it
++• So I fixed it
 
 
-+* https://blog.othree.net/log/2013/06/25/autocomplpop-and-snipmate/
++• https://blog.othree.net/log/2013/06/25/autocomplpop-and-snipmate/
 
 ----
 == The Old Vim Way for Plugins
 
 
-+* Vim Scripts
++• Vim Scripts
 
-+* Move file by hand
++• Move file by hand
 
-+* Vimball file
++• Vimball file
 
 ----
 == The Vim EcoSystem Changes
 
 
-+* pathogen.vim by Tim Pope
++• pathogen.vim by Tim Pope
 
 ----
 == The pathogen Way
 
-+* Separate all plugins
++• Separate all plugins
 
-+* No more mess in `.vim` folder
++• No more mess in `.vim` folder
 
-+* Uninstall plugins never hard
++• Uninstall plugins never hard
 
-+* Update all plugins automatically
++• Update all plugins automatically
 
-+* Dependency is not hard anymore
++• Dependency is not hard anymore
 
 ----
 
-+* Not depends on Git, HG ...etc
-  But work very well with them
++• Not depends on Git, HG ...etc
+   But work very well with them
 
-+* I use Vundle, it depends on Github
++• I use Vundle, it depends on Github
 
-+* More and more Vim plugin lives on Github or other repo sites
-+  * ex: garbas/vim-snipmates
-+        othree/vim-autocomplpop    
++• More and more Vim plugin lives on Github or other repo sites
++   • ex: garbas/vim-snipmates
++          othree/vim-autocomplpop    
 
 ----
 == Related Manager
 
-+* pathogen.vim
++• pathogen.vim
 
-+* Vundle
++• Vundle
 
-+* NeoBundle
++• NeoBundle
 
 ---- center
 
@@ -509,14 +509,14 @@ Thanks You, Tim Pope !!
 == Last Slide for Complete
 
 
-* Imaging the complete funcion in IDE
+• Imaging the complete funcion in IDE
 
-+* Tern: http://ternjs.net/
++• Tern: http://ternjs.net/
 
 
-+* But I am writing CoffeeScript now.....
++• But I am writing CoffeeScript now.....
 
-+* Tell us if you have experience on Tern
++• Tell us if you have experience on Tern
 
 ----
 
@@ -531,38 +531,38 @@ lint
 == JSLint for 10 secs
 
 
-* JSLint.vim
+• JSLint.vim
 
-+* Not update JSLint often
++• Not update JSLint often
 
-+* Host my own to fix this issue
++• Host my own to fix this issue
 
-+* Also try use JSHint
++• Also try use JSHint
 
-+* Then I starts write CoffeeScript...
++• Then I starts write CoffeeScript...
 
 ----
 == CoffeeCheck.vim
 
 
-+* Based on JSLint.vim
++• Based on JSLint.vim
 
-+* Use CoffeeScript compiler to do syntax check 
++• Use CoffeeScript compiler to do syntax check 
 
-+* Only one error per time
++• Only one error per time
 
-+* Only syntax check, not lint
++• Only syntax check, not lint
 
-+* CoffeeLint borns....
++• CoffeeLint borns....
 
 ----
 == CoffeeLint.vim ?
 
 
-+* ...
++• ...
 
-+* Ladies and Gentlemen,
-+  let me introduce ...
++• Ladies and Gentlemen,
++   let me introduce ...
 
 ---- html,i-8
 
@@ -587,36 +587,36 @@ jgs `{{{{`       |     '--'       |  ___/ / /_/ / / / / /_/ /_/ (__  ) /_/ / /__
 == Syntastic
 
 
-+* General syntax checker interface
++• General syntax checker interface
 
-+* filetype vs multiple checker
++• filetype vs multiple checker
 
-+* Supports JavaScript, CoffeeScript...etc
++• Supports JavaScript, CoffeeScript...etc
 
-+* CoffeeScript supports CoffeeScript Compiler and CoffeeLint ...
-+  by default
++• CoffeeScript supports CoffeeScript Compiler and CoffeeLint ...
++   by default
 
-+* https://blog.othree.net/log/2013/06/21/syntastic-coffeelint/
++• https://blog.othree.net/log/2013/06/21/syntastic-coffeelint/
 
 ----
 == Syntastic for JavaScript
 
 
-+* Supports JSLint, JSHint, Closure Linter,
-  JavaScript Lint, Closure Compiler
++• Supports JSLint, JSHint, Closure Linter,
+   JavaScript Lint, Closure Compiler
 
-+* For other filetypes:
-  https://github.com/scrooloose/syntastic/tree/master/syntax_checkers
++• For other filetypes:
+   https://github.com/scrooloose/syntastic/tree/master/syntax_checkers
 
 ----
 == JSLint
 
-+* Hurts your feeling
++• Hurts your feeling
 
-+* But it worth!!
++• But it worth!!
 
-+* For the errors you don't understand
-  http://jslinterrors.com/
++• For the errors you don't understand
+   http://jslinterrors.com/
 
 ----
 
@@ -628,71 +628,71 @@ Regular Expression
 
 ----
 
-* Find command `/`
+• Find command `/`
 
-+* It supports regular expression
++• It supports regular expression
 
-+* Vim's Regular Expression
++• Vim's Regular Expression
 
 ----
 == Vim's Regular Expression
 
 
-+* http://vimdoc.sourceforge.net/htmldoc/pattern.html
++• http://vimdoc.sourceforge.net/htmldoc/pattern.html
 
 
-+* Very different from other RegExp
++• Very different from other RegExp
 
-+* Very different from JavaScript's RegExp
++• Very different from JavaScript's RegExp
 
 ----
 == For Example
 
 
-+* Do you know `\zs` ?
++• Do you know `\zs` ?
 
-+* Do you know `\w` still works ?
++• Do you know `\w` still works ?
 
-+* Do you know `[\w]` is not what you think ?
++• Do you know `[\w]` is not what you think ?
 
-+* How about `\_.`, `\%^`, `\@<!`, `{-}`, `\_[]`
++• How about `\_.`, `\%^`, `\@<!`, `\{-}`, `\_[]`
 
 
-+* What if I want a familiar RegExp format, like Perl or JavaScript
-+  * Ack.vim
-+  * eregex.vim
++• What if I want to use familiar RegExp format, like Perl or JavaScript
++   • Ack.vim
++   • eregex.vim
 
 ----
 == eregex.vim
 
 
-* Translate Perl style RegExp to Vim's format
+• Translate Perl style RegExp to Vim's format
 
 
-+* Author: 安久津
++• Author: 安久津
 
-+* Disappeared...
++• Disappeared...
 
-+* I start to host my own...
++• I start to host my own...
 
 ----
 == Bugs
 
 
-+* Do you know is is ok to find third item by `3/`
++• Do you know is is ok to find third item by `3/`
 
-+* Do you know when count > 1, highlight will enable
++• Do you know when count > 1, highlight will enable
 
-+* Do you know there is a backword search `?`
++• Do you know there is a backword search `?`
 
 
-+* eregex.vim can't do every thing above...
++• eregex.vim can't do every thing above...
 
 ----
 == The Count Parameter
 
 
-* :help command-count
+• :help command-count
 
 ---- help
 
@@ -723,7 +723,7 @@ specified.
 == Easy~~~
 
 
-+* How about the backward search and highlight
++• How about the backward search and highlight
 
 ---- viml,i1
 
@@ -747,7 +747,7 @@ Don't Know Why
 
 ----
 
-* :help function-search-undo
+• :help function-search-undo
 
 ---- help
 
@@ -761,9 +761,9 @@ Don't Know Why
 
 ----
 
-+* OK
++• OK
 
-+* Close issue, impossible to fix
++• Close issue, impossible to fix
 
 ---- center
 
@@ -771,15 +771,15 @@ One Month Later
 
 ----
 
-* Something *wrong* on me
+• Something *wrong* on me
 
-+* Keep looking at Vim resource and document
++• Keep looking at Vim resource and document
 
-+* I found `v:searchforward`
++• I found `v:searchforward`
 
 ----
 
-* :help v:searchforward
+• :help v:searchforward
 
 ---- help
 
@@ -793,11 +793,11 @@ v:searchforward            *v:searchforward* *searchforward-variable*
 
 ----
 
-* `v:searchforward` is what been reset when leave function
+• `v:searchforward` is what been reset when leave function
 
-* Another one been reset is `hlsearch`
+• Another one been reset is `hlsearch`
 
-* How could I set it on my custom command
+• How could I set it on my custom command
 
 ---- viml,i1
 
@@ -820,46 +820,49 @@ Highlight ?
 == So...
 
 
-* How could I fix this two year long life bug?
+• How could I fix this two year long life bug?
 
-+* Vim have great document
++• Vim have great document
 
-+* It documents almost every detail in Vim
++• It documents almost every detail in Vim
 
-+* If you want write Vim Script or Plugin
++• If you want write Vim Script or Plugin
 
-+* You must learn how to read & search in the document
++• You must learn how to read & search in the document
 
 
 ----
 == But
 
 
-+* Bad SEO, hard to see it in search results
++• Bad SEO, hard to see it in search results
 
-+* You need know the correct keyword
++• You need know the correct keyword
 
 ----
 == Suggestion
 
 
-+* Use `:help keyword` first
++• Use `:help keyword` first
 
-+* Add 'vim', 'doc' to your keywords when search on web
++• Add 'vim', 'doc' to your keywords when search on web
 
-+* Search in vim doc directly
++• Search in vim doc directly
 
 
-* http://vimdoc.sourceforge.net/htmldoc/help.html
+• http://vimdoc.sourceforge.net/htmldoc/help.html
 
 ----
-== Reading
+== Reading, Refs
 
-* Learn Vimscript the Hard Way
-  http://learnvimscriptthehardway.stevelosh.com/
+• Vim Doc
+   http://vimdoc.sourceforge.net/htmldoc/usr_toc.html
 
-* My .vimrc
-  https://github.com/othree/rc/blob/master/home/.vimrc
+• Learn Vimscript the Hard Way
+   http://learnvimscriptthehardway.stevelosh.com/
+
+• My .vimrc
+   https://github.com/othree/rc/blob/master/home/.vimrc
 
 ---- center
 Questions?
