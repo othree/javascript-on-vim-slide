@@ -19,10 +19,12 @@ vimrc: |
   set nowrap
   map Q <Nop>
 
+  autocmd BufEnter * redraw!
   autocmd VimEnter,BufRead *.help set ft=help
   autocmd VimEnter,BufRead \d\+\l\= syntax match slideLink        "http[^ ]\+"
   autocmd VimEnter,BufRead \d\+\l\= syntax match slideStar        "^\s*\zs\*"
   autocmd VimEnter,BufRead \d\+\l\= syntax match slideStar        "^\s*\zs•"
+  autocmd VimEnter,BufRead \d\+\l\= syntax match slideStar        "★"
   autocmd VimEnter,BufRead \d\+\l\= syntax match slideVimTag      "<.*>"
   autocmd VimEnter,BufRead \d\+\l\= syntax match slideVimCommand  " :[a-zA-Z-]\+\>" skipwhite nextgroup=slideVimCommandArg
   autocmd VimEnter,BufRead \d\+\l\= syntax match slideVimCommandArg  "[.:0-9a-z_-]\+" contained
@@ -43,6 +45,7 @@ vimrc: |
   autocmd VimEnter,BufRead \d\+\l\= syntax match slideTitle       "\%^\_[ ]* \{10,}\S.*" contains=slideTitleFix
   autocmd VimEnter,BufRead \d\+\l\= syntax match slideTitleFix    "_"
   autocmd VimEnter,BufRead \d\+\l\= syntax keyword slideWord      Gentlemen
+  autocmd VimEnter,BufRead \d\+\l\= syntax match slideVimComplete    "[a-z0-9]\+\zecomplete"
   hi Normal ctermfg=231
   hi slideTitle ctermfg=172
   hi slideVimPlugin ctermfg=82
@@ -56,6 +59,7 @@ vimrc: |
   hi slideVimCommandArg ctermfg=39
   hi slideCommand ctermfg=4
   hi slideTitleFix ctermfg=16
+  hi slideVimComplete ctermfg=33
 
 ---- center
 
@@ -89,8 +93,6 @@ othree@COSCUP
 +• Big problem about JavaScript syntax
 
 +• The eco system of Vim community
-
-+• Problems maintaining these projects
 
 +• Get familiar with Vim Document
 
@@ -134,7 +136,7 @@ othree@COSCUP
 • But no more need when I alomost complete it
 
 +• Not dead
-+• Looking for contributor add more new Web Standards
++   Looking for contributor add more new Web Standards
 
 ----
 
@@ -238,10 +240,12 @@ if version >= 508 || !exists("did_javascript_syn_inits")
 print('javascript' === 'javaScript');
 
 ---- i-4
-== *44.12*  Portable syntax file layout
+== Which One is Correct?
 
 
 • :help 44.12
+
+---- help,i0
 
 Choose a good, descriptive name for your syntax file.  Use lowercase letters
 and digits.  Don't make it too long, it is used in many places: The name of
@@ -250,7 +254,7 @@ syntax group (nameType, nameStatement, nameString, etc).
 
 ---- center
 
-_ㄜ....
+( #｀Д´)........
 
 ---- 
 == _______上樑不正下梁歪
@@ -336,6 +340,79 @@ update.sh
 
 +• Fix lots of bugs
 
+---- center
+
+CoffeeScript?
+
+----
+
+• kchmck/vim-coffee-script
++   :echo b:current_syntax 
+
++   'javascript'
+
+---- viml,i4
+
+" This is used instead of TOP to keep things coffee-specific for good
+" embedding. `contained` groups aren't included.
+syn cluster coffeeAll contains=coffeeStatement,coffeeRepeat,coffeeConditional,
+\                              coffeeException,coffeeKeyword,coffeeOperator,
+\                              coffeeExtendedOp,coffeeSpecialOp,coffeeBoolean,
+\                              coffeeGlobal,coffeeSpecialVar,coffeeSpecialIdent,
+\                              coffeeObject,coffeeConstant,coffeeString,
+\                              coffeeNumber,coffeeFloat,coffeeReservedError,
+\                              coffeeObjAssign,coffeeComment,coffeeBlockComment,
+\                              coffeeEmbed,coffeeRegex,coffeeHeregex,
+\                              coffeeHeredoc,coffeeSpaceError,
+\                              coffeeSemicolonError,coffeeDotAccess,
+\                              coffeeProtoAccess,coffeeCurlies,coffeeBrackets,
+\                              coffeeParens
+
+if !exists('b:current_syntax')
+  let b:current_syntax = 'coffee'
+endif
+
+---- center
+
+(ノ｀Д´)ノ彡┻━┻
+
+---- viml,i4
+
+" Language:    CoffeeScript
+" Maintainer:  Mick Koch <kchmck@gmail.com>
+" URL:         http://github.com/kchmck/vim-coffee-script
+" License:     WTFPL
+
+" Bail if our syntax is already loaded.
+if exists('b:current_syntax') && b:current_syntax == 'coffee'
+  finish
+endif
+
+" Include JavaScript for coffeeEmbed.
+syn include @coffeeJS syntax/javascript.vim
+
+----
+
+• So....?
+
++• I'm writing javascript-libraries-syntax.vim
+
++• Supports JavaScript, CoffeeScript...etc
+
++• I should be able to know what is current syntax
+
+----
+
+• I fork one repo and fix this bug
+
++• Sent pull request
+
++• No response.....
+
++• https://github.com/othree/vim-coffee-script/
+
++• To server muggles, use &filetype instead. (￣ー￣)
+
 ----
 
 2nd
@@ -360,6 +437,20 @@ autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 ----
 
 • Then press <C-X><C-O>
+
+----
+== Default, Built-in
+
+
+• htmlcomplete
+• javascriptcomplete
+• phpcomplete
+• pythoncomplete
+• python3complete
+• rubycomplete
+• sqlcomplete
+• syntaxcomplete
+• xmlcomplete
 
 ----
 == Default JS Complete Function
@@ -418,7 +509,7 @@ call extend(g:acp_behavior, behavs, 'keep')
 
 ---- center
 
-_ㄜ....
+( #｀Д´)........
 
 ---- center
 
@@ -461,6 +552,16 @@ Maintain my own AutoComplPop
 +• Move file by hand
 
 +• Vimball file
+
+----
+== Problems
+
+
++• Hard to remove plugin
+
++• File confilict
+
++• Mess in `.vim` folder
 
 ----
 == The Vim EcoSystem Changes
@@ -549,7 +650,7 @@ lint
 
 +• Use CoffeeScript compiler to do syntax check 
 
-+• Only one error per time
++• Only one error per check
 
 +• Only syntax check, not lint
 
@@ -832,7 +933,7 @@ Highlight ?
 
 
 ----
-== But
+== Problems
 
 
 +• Bad SEO, hard to see it in search results
@@ -846,6 +947,7 @@ Highlight ?
 +• Use `:help keyword` first
 
 +• Add 'vim', 'doc' to your keywords when search on web
+   ex: 'vim doc ctrl-l'
 
 +• Search in vim doc directly
 
