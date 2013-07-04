@@ -25,7 +25,7 @@ vimrc: |
   autocmd VimEnter,BufRead \d\+\l\= syntax match slideStar        "^\s*\zs\*"
   autocmd VimEnter,BufRead \d\+\l\= syntax match slideStar        "^\s*\zs•"
   autocmd VimEnter,BufRead \d\+\l\= syntax match slideStar        "★"
-  autocmd VimEnter,BufRead \d\+\l\= syntax match slideVimTag      "<.*>"
+  autocmd VimEnter,BufRead \d\+\l\= syntax match slideVimTag      "<.\{-}>"
   autocmd VimEnter,BufRead \d\+\l\= syntax match slideVimCommand  " :[a-zA-Z-]\+\>" skipwhite nextgroup=slideVimCommandArg
   autocmd VimEnter,BufRead \d\+\l\= syntax match slideVimCommandArg  "[.:0-9a-z_-]\+" contained
   autocmd VimEnter,BufRead \d\+\l\= syntax match slideCommand     "`.\{-}`"
@@ -45,7 +45,7 @@ vimrc: |
   autocmd VimEnter,BufRead \d\+\l\= syntax match slideTitle       "\%^\_[ ]* \{10,}\S.*" contains=slideTitleFix
   autocmd VimEnter,BufRead \d\+\l\= syntax match slideTitleFix    "_"
   autocmd VimEnter,BufRead \d\+\l\= syntax keyword slideWord      Gentlemen
-  autocmd VimEnter,BufRead \d\+\l\= syntax match slideVimComplete    "[a-z0-9]\+\zecomplete"
+  autocmd VimEnter,BufRead \d\+\l\= syntax match slideVimComplete    "[a-z0-9]\{3,}\zecomplete"
   hi Normal ctermfg=231
   hi slideTitle ctermfg=172
   hi slideVimPlugin ctermfg=82
@@ -519,12 +519,12 @@ Maintain my own AutoComplPop
 == My AutoComplPop
 
 
-+• Add more filetype default support
++• Add more filetype support by default
 
-+• Supports snipmate again
++• Supports latest snipmate
 
 ----
-== What happened with snipmate
+== What Happened with Snipmate
 
 
 +• Author don't maintains....
@@ -542,6 +542,13 @@ Maintain my own AutoComplPop
 
 
 +• https://blog.othree.net/log/2013/06/25/autocomplpop-and-snipmate/
+
+----
+== garbas/vim-snipmate
+
+• https://github.com/garbas/vim-snipmate
+
++• Only on Github, not on Vim Scripts
 
 ----
 == The Old Vim Way for Plugins
@@ -588,10 +595,12 @@ Maintain my own AutoComplPop
    But work very well with them
 
 +• I use Vundle, it depends on Github
+   https://blog.othree.net/log/2011/06/05/vundle/
 
 +• More and more Vim plugin lives on Github or other repo sites
 +   • ex: garbas/vim-snipmates
-+          othree/vim-autocomplpop    
++          othree/vim-autocomplpop
++          bling/vim-airline
 
 ----
 == Related Manager
@@ -625,11 +634,11 @@ Thanks You, Tim Pope !!
 
 ---- center
 
-lint
+Lint
 
 
 ----
-== JSLint for 10 secs
+== JSLint in 10 secs
 
 
 • JSLint.vim
@@ -652,7 +661,7 @@ lint
 
 +• Only one error per check
 
-+• Only syntax check, not lint
++• Only syntax check, not linter
 
 +• CoffeeLint borns....
 
@@ -780,7 +789,8 @@ Regular Expression
 == Bugs
 
 
-+• Do you know is is ok to find third item by `3/`
++• Do you know how to find third item
++   use `3/`
 
 +• Do you know when count > 1, highlight will enable
 
@@ -921,9 +931,7 @@ Highlight ?
 == So...
 
 
-• How could I fix this two year long life bug?
-
-+• Vim have great document
+• Vim have great document
 
 +• It documents almost every detail in Vim
 
@@ -950,15 +958,17 @@ Highlight ?
    ex: 'vim doc ctrl-l'
 
 +• Search in vim doc directly
+   http://vimdoc.sourceforge.net/htmldoc/help.html
 
++• Find the right keyword, and back to Vim
 
-• http://vimdoc.sourceforge.net/htmldoc/help.html
++• Use <C-]> and <C-O>
 
 ----
 == Reading, Refs
 
 • Vim Doc
-   http://vimdoc.sourceforge.net/htmldoc/usr_toc.html
+   http://vimdoc.sourceforge.net/htmldoc/help.html
 
 • Learn Vimscript the Hard Way
    http://learnvimscriptthehardway.stevelosh.com/
