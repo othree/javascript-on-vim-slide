@@ -18,6 +18,7 @@ skip: 0
 vimrc: |
   set nowrap
   map Q <Nop>
+  map <CR> :N<CR>:<CR>gg
 
   autocmd BufEnter * redraw!
   autocmd VimEnter,BufRead *.help set ft=help
@@ -112,7 +113,7 @@ This is a Vim Talk
 == html5.vim
 
 
-• 293 ★
+• 295 ★
 
 • Build this for personal need
 
