@@ -20,6 +20,8 @@ vimrc: |
   map Q <Nop>
   map <CR> :N<CR>:<CR>gg
 
+  set guicolors
+  colors jellybeans
   autocmd BufEnter * redraw!
   autocmd VimEnter,BufRead *.help set ft=help
   autocmd VimEnter,BufRead \d\+\l\= syntax match slideLink        "http[^ ]\+"
@@ -47,20 +49,20 @@ vimrc: |
   autocmd VimEnter,BufRead \d\+\l\= syntax match slideTitleFix    "_"
   autocmd VimEnter,BufRead \d\+\l\= syntax keyword slideWord      Gentlemen
   autocmd VimEnter,BufRead \d\+\l\= syntax match slideVimComplete    "[a-z0-9]\{3,}\zecomplete"
-  hi Normal ctermfg=231
-  hi slideTitle ctermfg=172
-  hi slideVimPlugin ctermfg=82
-  hi slideLink cterm=underline ctermfg=33
+  hi Normal ctermfg=231 guifg=#fffffc
+  hi slideTitle ctermfg=172 guifg=#FFA319
+  hi slideVimPlugin ctermfg=82 guifg=#6df567
+  hi slideLink cterm=underline ctermfg=33 guifg=#48f5f1
   hi slideString cterm=underline
-  hi slideStar ctermfg=226
-  hi slideEnhanced cterm=bold ctermfg=231
-  hi slideShipName cterm=bold ctermfg=123
-  hi slideVimTag ctermfg=4
-  hi slideVimCommand ctermfg=33
-  hi slideVimCommandArg ctermfg=39
-  hi slideCommand ctermfg=4
-  hi slideTitleFix ctermfg=16
-  hi slideVimComplete ctermfg=33
+  hi slideStar ctermfg=226 guifg=#f1ea5f
+  hi slideEnhanced cterm=bold ctermfg=231 guifg=#1f9ef4
+  hi slideShipName cterm=bold ctermfg=123 guifg=#1f9ef4
+  hi slideVimTag ctermfg=4  guifg=#1dbffd
+  hi slideVimCommand ctermfg=33 guifg=#1f9ef4
+  hi slideVimCommandArg ctermfg=39 guifg=#1dbffd
+  hi slideCommand ctermfg=4 guifg=#1f9ef4
+  hi slideTitleFix ctermfg=16 guifg=#1b1b1b
+  hi slideVimComplete ctermfg=33 guifg=#1dbffd
 
 ---- center
 
