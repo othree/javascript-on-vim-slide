@@ -1,0 +1,60 @@
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script>
+function navigate(e) {
+    var keynum = (window.event) // IE
+        ? e.keyCode
+        : e.which;
+    if (keynum == 8) {
+        window.location = "0019" + ".html";
+        return false;
+    }
+    if (keynum == 13 || keynum == 32) {
+        window.location = "0021" + ".html";
+        return false;
+    }
+    if (keynum == 73 || keynum == 105) {
+        window.location = "index.html";
+        return false;
+    }
+    return true;
+}
+</script>
+</head>
+<body onkeydown="return navigate(event)">
+<div style="border-style: solid ; border-width: 2px ; font-size: x-large">
+<pre>
+
+
+
+
+
+
+
+
+Choose a good, descriptive name for your syntax file.  Use lowercase letters
+and digits.  Don't make it too long, it is used in many places: The name of
+the syntax file &quot;name.vim&quot;, 'filetype', b:current_syntax and the start of each
+syntax group (nameType, nameStatement, nameString, etc).
+
+
+
+
+
+
+
+
+
+
+
+
+</pre>
+</div>
+<br>
+<div style="font-size: small">
+<p></p>
+</div>
+</body>
+</html>

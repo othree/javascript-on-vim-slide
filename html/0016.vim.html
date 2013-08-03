@@ -1,0 +1,64 @@
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script>
+function navigate(e) {
+    var keynum = (window.event) // IE
+        ? e.keyCode
+        : e.which;
+    if (keynum == 8) {
+        window.location = "0015" + ".html";
+        return false;
+    }
+    if (keynum == 13 || keynum == 32) {
+        window.location = "0017" + ".html";
+        return false;
+    }
+    if (keynum == 73 || keynum == 105) {
+        window.location = "index.html";
+        return false;
+    }
+    return true;
+}
+</script>
+</head>
+<body onkeydown="return navigate(event)">
+<div style="border-style: solid ; border-width: 2px ; font-size: x-large">
+<pre>    if version &gt;= 508 || !exists(&quot;did_javascript_syn_inits&quot;)
+      if version &lt; 508
+        let did_javascript_syn_inits = 1
+        command -nargs=+ HiLink hi link &lt;args&gt;
+      else
+        command -nargs=+ HiLink hi def link &lt;args&gt;
+      endif
+      HiLink javaScriptComment              Comment
+      HiLink javaScriptLineComment          Comment
+      HiLink javaScriptCommentTodo          Todo
+      HiLink javaScriptSpecial              Special
+      HiLink javaScriptStringS              String
+      HiLink javaScriptStringD              String
+      HiLink javaScriptCharacter            Character
+      HiLink javaScriptSpecialCharacter     javaScriptSpecial
+      HiLink javaScriptNumber               javaScriptValue
+      HiLink javaScriptConditional          Conditional
+      HiLink javaScriptRepeat               Repeat
+      HiLink javaScriptBranch               Conditional
+      HiLink javaScriptOperator             Operator
+      HiLink javaScriptType                 Type
+      HiLink javaScriptStatement            Statement
+      HiLink javaScriptFunction             Function
+      HiLink javaScriptBraces               Function
+      HiLink javaScriptError                Error
+      HiLink javaScrParenError              javaScriptError
+      HiLink javaScriptNull                 Keyword
+      HiLink javaScriptBoolean              Boolean
+      HiLink javaScriptRegexpString         String
+</pre>
+</div>
+<br>
+<div style="font-size: small">
+<p></p>
+</div>
+</body>
+</html>

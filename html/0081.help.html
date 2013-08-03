@@ -1,0 +1,60 @@
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script>
+function navigate(e) {
+    var keynum = (window.event) // IE
+        ? e.keyCode
+        : e.which;
+    if (keynum == 8) {
+        window.location = "0080" + ".html";
+        return false;
+    }
+    if (keynum == 13 || keynum == 32) {
+        window.location = "0082" + ".html";
+        return false;
+    }
+    if (keynum == 73 || keynum == 105) {
+        window.location = "index.html";
+        return false;
+    }
+    return true;
+}
+</script>
+</head>
+<body onkeydown="return navigate(event)">
+<div style="border-style: solid ; border-width: 2px ; font-size: x-large">
+<pre>     Range handling                          *E177* *E178* *:command-range*
+                                                             *:command-count*
+     By default, user-defined commands do not accept a line number range.  However,
+     it is possible to specify that the command does take a range (the -range
+     attribute), or that it takes an arbitrary count value, either in the line
+     number position (-range=N, like the |:split| command) or as a &quot;count&quot;
+     argument (-count=N, like the |:Next| command).  The count will then be
+     available in the argument with |&lt;count&gt;|.
+
+     Possible attributes are:
+
+             -range      Range allowed, default is current line
+             -range=%    Range allowed, default is whole file (1,$)
+             -range=N    A count (default N) which is specified in the line
+                         number position (like |:split|); allows for zero line
+                         number.
+             -count=N    A count (default N) which is specified either in the line
+                         number position, or as an initial argument (like |:Next|).
+                         Specifying -count (without a default) acts like -count=0
+
+     Note that -range=N and -count=N are mutually exclusive - only one should be
+     specified.
+
+
+
+</pre>
+</div>
+<br>
+<div style="font-size: small">
+<p></p>
+</div>
+</body>
+</html>
